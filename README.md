@@ -112,7 +112,9 @@ Warning" suggesting the client implement them (serving as a lead-gen mechanism f
 | 404_error | page_location | Captures the broken URL the user attempted to visit. |
 | | page_referrer | Where the user clicked from to get to the 404 page. |
 | rage_click | click_id | The CSS ID or selector of the element experiencing rapid, repeated clicks. |
-| | click_url | The page location where the user frustration occurred. |
+| | click_url | The link href of the element where the user frustration occurred. |
+| | click_text | The inner text of the element where the user frustration occurred. |
+
 
 ### Tier 4: The "Virtual" Events (SQL-Calculated)
 
