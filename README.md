@@ -105,7 +105,7 @@ Warning" suggesting the client implement them (serving as a lead-gen mechanism f
 | ---- | ---- | ---- |
 | form_validation_error | form_id | Identifies the specific form that failed. |
 | | error_message | The exact validation error (e.g., "Invalid Email") causing the friction. |
-| js_error | error_message | Captures frontend JavaScript crash details. |
+| javascript_error | error_message | Captures frontend JavaScript crash details. |
 | | error_url | The exact page URL where the crash occurred. |
 | out_of_stock_view | item_id | Identifies the specific sold-out product ID. |
 | | item_name | Identifies the name of the sold-out product users are viewing. |
