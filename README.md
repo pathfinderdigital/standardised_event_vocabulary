@@ -28,6 +28,11 @@ These events are automatically collected by GA4 (via Enhanced Measurement). The 
 | | link_url | The full URL path to the downloaded file. |
 | search | search_term | The actual text the user typed into the website's internal search bar. Note that this can aslo be used to capture product filters, in which case filter parameters should be captured as well.|
 
+| form_start | form_name | |
+| form_submit | form_name | |
+| form_input_change | input_name | |
+
+
 ### Tier 2: The "Standard Conversion" Events (AI-Mapped)
 
 These are Google's recommended conversion events, as well as Enhanced Replacements for basic Tier 1 events. Because clients often use custom naming conventions (e.g., submit_contact_v2 or btn_click), the Pathfinder backend uses a Gemini "Pre-Processing" prompt to map the client's raw event names to these standard definitions before analysis.
