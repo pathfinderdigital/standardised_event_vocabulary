@@ -28,11 +28,14 @@ These events are automatically collected by GA4 (via Enhanced Measurement). The 
 | search | search_term | The actual text the user typed into the website's internal search bar. Note that this can aslo be used to capture product filters, in which case filter parameters should be captured as well.|
 | form_start | form_name | |
 | | form_id | |
+| | form_action | |
 | form_submit | form_name | |
 | | form_id | |
-| form_input_change | input_name | |
+| | form_action | |
+| form_field_change | input_name | |
 | | form_name | |
 | | form_id | |
+| | form_action | |
 
 
 ### Tier 2: The "Standard Conversion" Events (AI-Mapped)
