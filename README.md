@@ -28,8 +28,12 @@ These events are automatically collected by GA4 (via Enhanced Measurement). The 
 | | link_url | The full URL path to the downloaded file. |
 | search | search_term | The actual text the user typed into the website's internal search bar. Note that this can aslo be used to capture product filters, in which case filter parameters should be captured as well.|
 | form_start | form_name | |
+| | form_id | |
 | form_submit | form_name | |
+| | form_id | |
 | form_input_change | input_name | |
+| | form_name | |
+| | form_id | |
 
 
 ### Tier 2: The "Standard Conversion" Events (AI-Mapped)
