@@ -32,7 +32,10 @@ These events are automatically collected by GA4 (via Enhanced Measurement). The 
 | form_submit | form_name | |
 | | form_id | |
 | | form_action | |
-| form_field_change | input_name | |
+| form_field_change | field_name | |
+| | field_id | 
+| | field_name | 
+| | field_type | 
 | | form_name | |
 | | form_id | |
 | | form_action | |
