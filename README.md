@@ -1,5 +1,4 @@
 # Pathfinder Digital: Data Architecture & Event Dictionary
-## Project Codename: Alidade / Signal Lock
 
 Core Tech Stack: Ubuntu, Python, BigQuery, Gemini API
 
