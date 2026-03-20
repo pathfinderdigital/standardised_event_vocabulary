@@ -1,27 +1,22 @@
 <script>
   /**
-   * COMPREHENSIVE FORM TRACKING SCRIPT FOR GTM
+   * COMPREHENSIVE FORM TRACKING SCRIPT FOR GTM (SPA SAFE)
    */
   (function() {
-    // --- NEW: PREVENT DOUBLE-INJECTION ---
-    // If GTM fires this tag multiple times, this prevents duplicate 
-    // event listeners and separate WeakSets from being created.
     if (window.__gtm_formTrackerActive) return;
     window.__gtm_formTrackerActive = true;
-    // -------------------------------------
 
     window.dataLayer = window.dataLayer || [];
 
     var interactedForms = new WeakSet();
     var interactedFields = new WeakSet(); 
     var recentSubmitIntents = new WeakMap();
+    
+    // NEW: Tracks form identities as strings to survive framework re-renders
+    var interactedFormSignatures = new Set(); 
 
-    /** @type {RegExp} */
     var validElementsRegex = /^(INPUT|SELECT|TEXTAREA)$/i;
-
-    /** @type {boolean} */
     var isSubmitAttemptActive = false;
-    /** @type {number|undefined} */
     var submitAttemptTimeout;
 
     function markSubmitIntent() {
@@ -39,11 +34,21 @@
     function getFormContext(element) {
       var formNode = (element.tagName === 'FORM') ? element : (element.form || element.closest('[data-is-form="true"]'));
       if (!formNode) return null;
+      
+      // NEW: Create a unique string signature based on the form's static attributes
+      var signature = [
+        formNode.id || '',
+        formNode.getAttribute('name') || '',
+        formNode.getAttribute('action') || '',
+        formNode.className || ''
+      ].join('|');
+
       return {
         node: formNode,
         id: formNode.id || undefined,
         name: formNode.getAttribute('name') || undefined,
-        action: formNode.getAttribute('action') || 'ajax_or_custom'
+        action: formNode.getAttribute('action') || 'ajax_or_custom',
+        signature: signature
       };
     }
 
@@ -73,15 +78,26 @@
       var form = getFormContext(target);
       if (!form) return;
 
-      // 1. TRACK FORM START
-      if (!interactedForms.has(form.node)) {
+      // 1. TRACK FORM START (WITH SPA RE-RENDER PROTECTION)
+      var isNewNode = !interactedForms.has(form.node);
+      var isNewSignature = !interactedFormSignatures.has(form.signature);
+
+      // Only fire if BOTH the DOM node and the signature are completely new
+      if (isNewNode && isNewSignature) {
         interactedForms.add(form.node);
+        interactedFormSignatures.add(form.signature);
+        
         window.dataLayer.push({
           'event': 'form_start',
           'form_id': form.id,
           'form_name': form.name,
           'form_action': form.action
         });
+      } 
+      // If the node is new but the signature is known, the framework likely 
+      // re-rendered the form. Silently add the new node to the WeakSet so we track it.
+      else if (isNewNode) {
+        interactedForms.add(form.node);
       }
 
       // 2. TRACK INDIVIDUAL FIELD CHANGE
