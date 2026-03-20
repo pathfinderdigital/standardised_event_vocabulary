@@ -25,6 +25,7 @@ These events are automatically collected by GA4 (via Enhanced Measurement). The 
 | file_download | file_extension | Identifies the type of the asset downloaded (e.g., pdf). |
 | | file_name | The name of the asset downloaded (e.g., whitepaper.pdf). |
 | | link_url | The full URL path to the downloaded file. |
+| | link_text | The full text of the link. |
 | search | search_term | The actual text the user typed into the website's internal search bar. Note that this can aslo be used to capture product filters, in which case filter parameters should be captured as well.|
 | form_start | form_name | |
 | | form_id | |
